@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private Gun _gun;
+    private Weapon _gun;
 
     private void Start()
     {
-        _gun = transform.GetComponentInChildren<Gun>();
+        _gun = transform.GetComponentInChildren<Weapon>();
     }
 
     private void Update()

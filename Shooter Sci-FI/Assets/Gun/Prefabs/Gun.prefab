@@ -130,5 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6792223749145253771, guid: a4d39ae8062b98a458ddb17702d63ace, type: 3}
   barrel: {fileID: 1650201269368120695}
-  postShotDelay: 1
-  isPostShotDelay: 0
+  postShotDelay: 0.3
+  magazineSize: 10
+  timeReloading: 3
