@@ -20,8 +20,8 @@ public class PlayerAttack : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(ray, out hit, 50f);
         Vector3 direction;
-        if (hit.collider != null) direction = hit.point - _gun.transform.position;
-        else direction = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 50f)) - _gun.transform.position;
+        if (hit.collider != null) direction = hit.point;
+        else direction = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 50f));
         _gun.Fire(direction);
     }
 }

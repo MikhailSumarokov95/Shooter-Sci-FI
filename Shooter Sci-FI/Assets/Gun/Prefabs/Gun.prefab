@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 6885782099261121575}
   - component: {fileID: 6885782099261121562}
   - component: {fileID: 6885782099261121561}
-  - component: {fileID: 6885782099261121560}
   - component: {fileID: 8733462047962518136}
   m_Layer: 0
   m_Name: Gun
@@ -117,20 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6885782099261121560
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6885782099261121574}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &8733462047962518136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,5 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcd1b7cfe0350145aede85879942027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  barrel: {fileID: 0}
+  bullet: {fileID: 6792223749145253771, guid: a4d39ae8062b98a458ddb17702d63ace, type: 3}
+  barrel: {fileID: 1650201269368120695}
+  postShotDelay: 1
+  isPostShotDelay: 0

@@ -13,8 +13,16 @@ public class BotMove : MonoBehaviour
         Target = GetComponent<TargetMoveBot>().GetTarget();
     }
 
-    private void Update()
+    public void RunTowardsTarget()
     {
         _botNMA.destination = Target.position;
+        _botNMA.isStopped = false;
+    }
+
+    public void RotateTowardsTarget()
+    {
+        _botNMA.isStopped = true;
+        var rotationLookAnTarget = Quaternion.LookRotation(Target.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationLookAnTarget, _botNMA.angularSpeed / 20f);
     }
 }
