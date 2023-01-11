@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private int damage;
     [SerializeField] private float speed = 1f;
     private Rigidbody bulletRb;
 
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        other.GetComponent<HealthPoints>()?.TakeDamage(damage);
         Destroy(gameObject);
     }
 }
