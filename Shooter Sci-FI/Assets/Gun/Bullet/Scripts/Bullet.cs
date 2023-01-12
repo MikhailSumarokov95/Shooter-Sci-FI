@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         bulletRb = GetComponent<Rigidbody>();
+        StartCoroutine(TimerDestroy());
     }
 
     private void Update()
@@ -27,5 +29,11 @@ public class Bullet : MonoBehaviour
             healthPoint.TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator TimerDestroy()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }

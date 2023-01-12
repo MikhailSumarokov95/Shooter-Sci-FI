@@ -12,6 +12,7 @@ public class AIBotController : MonoBehaviour
     private BotMove _botMove;
     private Weapon _gun;
     private Vector3 _sideIsTargetIsVisible;
+    private Animator _animator;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class AIBotController : MonoBehaviour
         _targetCol = _target.GetComponent<CapsuleCollider>();
         _botMove = GetComponent<BotMove>();
         _gun = transform.GetComponentInChildren<Weapon>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
