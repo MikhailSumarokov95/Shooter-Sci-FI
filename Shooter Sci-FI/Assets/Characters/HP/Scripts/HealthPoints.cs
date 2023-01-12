@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthPoints : MonoBehaviour
 {
     public Action OnDead;
     [SerializeField] private int maxHealth;
-    private HealthBar _healthBar;
-
+    [SerializeField] private Slider healthBar;
     [SerializeField] private int currentHealth;
     public int CurrentHealth 
     { 
@@ -17,14 +17,13 @@ public class HealthPoints : MonoBehaviour
         set 
         {
             currentHealth = Mathf.Clamp(value, 0, maxHealth);
-            _healthBar.Health = currentHealth;
-        } 
+            healthBar.value = currentHealth;
+        }
     }
 
     private void Start()
     {
-        _healthBar = transform.GetComponentInChildren<HealthBar>();
-        _healthBar.SetMaxHealth(maxHealth);
+        healthBar.maxValue = maxHealth;
         CurrentHealth = maxHealth;
     }
 

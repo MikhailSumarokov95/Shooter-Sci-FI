@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,21 +12,36 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Animator _animator;
     private bool _isPostShotDelay;
     private bool _isReloading;
-    private int _restOfBulletinMagazine;
+    private TMP_Text _restOfBulletText;
 
+    private int _restOfBulletInMagazine;
+    public int RestOfBulletInMagazine
+    {
+        get 
+        {
+            return _restOfBulletInMagazine;
+        }
+        set
+        {
+            _restOfBulletInMagazine = value;
+            if (gameObject.CompareTag("PlayerWeapon")) 
+                _restOfBulletText.text = _restOfBulletInMagazine.ToString();
+        }
+    }
 
     private void Start()
     {
-        _restOfBulletinMagazine = magazineSize;
+        _restOfBulletText = GameObject.FindGameObjectWithTag("RestBullet").GetComponent<TMP_Text>();
+        RestOfBulletInMagazine = magazineSize;
     }
 
     public void Fire(Vector3 direction)
     {
         if (_isReloading) return;
-        if (_restOfBulletinMagazine == 0) StartCoroutine(Reloading());
+        if (RestOfBulletInMagazine == 0) StartCoroutine(Reloading());
         if (_isPostShotDelay) return;
         Instantiate(bullet, barrel.position, Quaternion.LookRotation(direction - transform.position));
-        _restOfBulletinMagazine--;
+        RestOfBulletInMagazine--;
         if (_animator != null) _animator.SetTrigger("Fire");
         StartCoroutine(WaitPostShotDelay());
     }
@@ -43,6 +59,6 @@ public class Weapon : MonoBehaviour
         _isReloading = true;
         yield return new WaitForSecondsRealtime(timeReloading);
         _isReloading = false;
-        _restOfBulletinMagazine = magazineSize;
+        RestOfBulletInMagazine = magazineSize;
     }
 }
