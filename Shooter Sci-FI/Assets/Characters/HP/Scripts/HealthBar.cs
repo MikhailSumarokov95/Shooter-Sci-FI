@@ -5,24 +5,34 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider healthSlider;
 
-    public int Health 
+    private float _health;
+    public float Health 
     {
         get
         {
-            return Health;
+            return _health;
         }
         set 
         {
-            Health = value;
-            healthSlider.value = Health;
+            _health = value;
+            healthSlider.value = _health;
         }
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        healthSlider.maxValue = maxHealth;
     }
 
     private void Update()
     {
-        var v = Camera.main.transform.position - transform.position;
+        LookAtCamera();
+    }
+
+    private void LookAtCamera()
+    {
+        var v = transform.position - Camera.main.transform.position;
         v.x = v.z = 0f;
         transform.LookAt(Camera.main.transform.position - v);
-        transform.Rotate(0, 180, 0);
     }
 }

@@ -5,9 +5,9 @@ public class HealthPoints : MonoBehaviour
 {
     public Action OnDead;
     [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private HealthBar healthBar;
+    private HealthBar _healthBar;
 
+    [SerializeField] private int currentHealth;
     public int CurrentHealth 
     { 
         get 
@@ -15,17 +15,24 @@ public class HealthPoints : MonoBehaviour
             return currentHealth; 
         } 
         set 
-        { 
-            currentHealth = value;
-            healthBar.Health = currentHealth;
+        {
+            currentHealth = Mathf.Clamp(value, 0, maxHealth);
+            _healthBar.Health = currentHealth;
         } 
+    }
+
+    private void Start()
+    {
+        _healthBar = transform.GetComponentInChildren<HealthBar>();
+        _healthBar.SetMaxHealth(maxHealth);
+        CurrentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
         var remainingHealth = CurrentHealth - damage;
-        if (remainingHealth <= 0) OnDead();
-        else CurrentHealth = remainingHealth;
+        if (remainingHealth <= 0) ToDead();
+        CurrentHealth = remainingHealth;
     }
 
     public void TakeHealth(int health)
