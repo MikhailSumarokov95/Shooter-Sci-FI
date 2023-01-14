@@ -43,4 +43,14 @@ public static class Progress
     {
         return PlayerPrefs.GetInt("money", 0);
     }
+
+    public static void SaveLevel(int value)
+    {
+        PlayerPrefs.SetInt("level", value);
+    }
+
+    public static int LoadLevel()
+    {
+        return PlayerPrefs.GetInt("level", 1);
+    }
 }
