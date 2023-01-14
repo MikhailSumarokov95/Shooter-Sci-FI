@@ -33,4 +33,14 @@ public static class Progress
         }
         return weapons.ToArray();
     }
+
+    public static void SaveMoney(int value)
+    {
+        PlayerPrefs.SetInt("money", value);
+    }
+    
+    public static int LoadMoney()
+    {
+        return PlayerPrefs.GetInt("money", 0);
+    }
 }
